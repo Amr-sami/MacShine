@@ -1,0 +1,46 @@
+appId: io.macclean.app
+productName: macclean
+copyright: Copyright © 2025 macclean
+
+directories:
+  output: release
+  buildResources: build
+
+mac:
+  category: public.app-category.utilities
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  icon: build/icon.icns
+  darkModeSupport: true
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  extraResources:
+    - from: python/dist/
+      to: python/
+      filter:
+        - "**/*"
+
+dmg:
+  backgroundColor: "#0d0f0e"
+  window:
+    width: 540
+    height: 380
+  contents:
+    - x: 130
+      y: 190
+    - x: 410
+      y: 190
+      type: link
+      path: /Applications
+
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - "!node_modules/**/*"
+
+asar: true

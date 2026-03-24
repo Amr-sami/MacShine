@@ -1,0 +1,18 @@
+{
+  "name": "macclean",
+  "version": "0.1.0",
+  "private": true,
+  "description": "macOS desktop app for disk cleanup and system health",
+  "scripts": {
+    "dev": "pnpm --filter @macclean/desktop dev",
+    "build": "pnpm --filter @macclean/desktop build",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["electron", "esbuild"]
+  }
+}

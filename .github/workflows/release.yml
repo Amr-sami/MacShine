@@ -1,0 +1,23 @@
+# Placeholder — Release workflow to be implemented
+# See spec section 14.1 for full pipeline
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm build
+      # TODO: notarize and upload to GitHub Release
