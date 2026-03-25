@@ -1,0 +1,16 @@
+@keyframes scan-sweep {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(400%); }
+}
+
+.scan-bar {
+  height: 1px;
+  width: 25%;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--accent),
+    var(--accent-glow),
+    transparent
+  );
+  animation: scan-sweep 1.2s ease-in-out infinite;
+}

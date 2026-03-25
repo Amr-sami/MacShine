@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ConfirmDialog } from '../../components/ConfirmDialog';
 import { UndoToast } from '../../components/UndoToast';
+import { Mail, Loader2, Sparkles, Paperclip } from 'lucide-react';
 
 interface AttachmentInfo {
   name: string;
@@ -56,9 +57,9 @@ export function EmailCleanerPage() {
     <div className="flex flex-col h-full bg-[#0d0f0e]">
       <div className="px-6 py-5 border-b border-mc-border flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-mc-text flex items-center gap-2">
-            <span>📫</span> Mail Attachment Cleaner
-            <span className="text-[10px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1.5 py-0.5 rounded uppercase">Pro</span>
+          <h2 className="text-xl font-light tracking-wide text-mc-text flex items-center gap-3">
+            <Mail className="w-5 h-5 text-mc-text" /> Mail Attachment Cleaner
+            <span className="text-[10px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1.5 py-0.5 rounded uppercase ml-2 tracking-widest">Pro</span>
           </h2>
           <p className="text-sm text-mc-muted mt-1">
             {scanned 
@@ -81,18 +82,18 @@ export function EmailCleanerPage() {
 
       <div className="flex-1 overflow-y-auto p-6">
         {loading && !scanned && (
-          <div className="flex flex-col items-center justify-center h-full text-mc-muted">
-            <div className="animate-spin text-3xl mb-4 text-blue-400">🌀</div>
+          <div className="flex flex-col items-center justify-center h-full text-mc-muted animate-in fade-in">
+            <Loader2 className="w-10 h-10 animate-spin text-mc-accent mb-4 drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]" />
             <span className="text-sm">Parsing Library/Mail...</span>
           </div>
         )}
 
         {scanned && attachments.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-mc-muted max-w-sm mx-auto text-center">
-            <div className="w-20 h-20 rounded-full bg-mc-surface flex items-center justify-center text-4xl mb-4 text-blue-400 border border-blue-500/20 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-              ✨
+          <div className="flex flex-col items-center justify-center h-full text-mc-muted max-w-sm mx-auto text-center animate-in zoom-in duration-500">
+            <div className="w-20 h-20 rounded-2xl bg-mc-surface flex items-center justify-center mb-6 border border-mc-border shadow-[0_0_30px_rgba(0,229,255,0.05)]">
+              <Sparkles className="w-10 h-10 text-mc-accent" />
             </div>
-            <h3 className="text-lg font-medium text-mc-text mb-2">Mailbox is lean!</h3>
+            <h3 className="text-xl font-light tracking-wide text-mc-text mb-3">Mailbox is lean!</h3>
             <p className="text-sm">No large email attachments were found in your local Apple Mail data.</p>
           </div>
         )}
@@ -102,9 +103,9 @@ export function EmailCleanerPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {attachments.map((item) => (
                 <div key={item.path} className="border border-mc-border bg-mc-surface rounded-xl p-4 flex flex-col justify-between hover:border-mc-accent/30 transition-colors">
-                  <div className="flex gap-3 mb-4">
-                    <div className="w-10 h-10 rounded bg-mc-bg flex items-center justify-center text-xl shrink-0 border border-mc-border">
-                      📎
+                  <div className="flex gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-mc-bg flex items-center justify-center shrink-0 border border-mc-border shadow-inner">
+                      <Paperclip className="w-6 h-6 text-mc-muted opacity-70" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-medium text-mc-text truncate" title={item.name}>{item.name}</h4>

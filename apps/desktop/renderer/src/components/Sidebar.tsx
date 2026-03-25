@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSessionStore, type ModuleId } from '../store/sessionStore';
 import { ModuleStatusDot } from './ModuleStatusDot';
+import { Sparkles, LayoutDashboard, History, Settings, FolderSearch, Box, ShieldAlert, RefreshCcw, MailX, ChevronRight, ActivitySquare } from 'lucide-react';
 
 const MODULE_LABELS: Record<ModuleId, string> = {
   caches: 'System Caches',
@@ -34,88 +35,112 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
   const modules = useSessionStore((s) => s.modules);
 
   return (
-    <aside className="w-[220px] h-screen bg-mc-bg border-r border-mc-border flex flex-col flex-shrink-0">
-      {/* Titlebar drag area */}
-      <div className="titlebar-drag h-12 flex items-end px-4 pb-2">
-        <h1 className="titlebar-no-drag font-mono text-mc-accent font-bold text-lg tracking-tight">
-          macclean
-        </h1>
+    <aside className="w-[220px] bg-mc-surface/60 border-r border-mc-border flex flex-col h-full shrink-0 backdrop-blur-md">
+      {/* App Logo Area */}
+      <div className="h-14 flex items-center px-4 titlebar-drag">
+        <div className="flex items-center gap-2 text-mc-text pt-2">
+          <div className="w-6 h-6 rounded flex items-center justify-center bg-mc-text/5 border border-mc-border shadow-inner">
+            <Sparkles className="w-3.5 h-3.5 text-mc-accent" />
+          </div>
+          <span className="font-semibold tracking-wide text-sm">MacClean<span className="text-mc-accent font-bold">Pro</span></span>
+        </div>
       </div>
 
-      {/* Smart Scan button */}
-      <div className="px-3 py-3 space-y-1">
+      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+        
+        {/* Primary Navigation */}
+        <div className="mb-2 px-2 text-[10px] uppercase tracking-widest text-mc-muted/60 font-medium">Core</div>
         <button
           onClick={() => onNavigate('smart-scan')}
-          className={`w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-colors titlebar-no-drag ${
+          className={`w-full px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center gap-3 titlebar-no-drag group ${
             currentPage === 'smart-scan'
-              ? 'bg-mc-accent/15 text-mc-accent'
-              : 'text-mc-text hover:bg-mc-surface'
+              ? 'bg-mc-accent/10 border border-mc-accent/20 text-mc-accent shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
+              : 'text-mc-muted hover:text-mc-text hover:bg-mc-border/50 border border-transparent'
           }`}
         >
-          ⚡ Smart Scan
+          <Sparkles className={`w-4 h-4 ${currentPage === 'smart-scan' ? 'text-mc-accent' : 'text-mc-muted group-hover:text-mc-text'} transition-colors duration-300`} />
+          <span className="font-medium">Smart Scan</span>
         </button>
+
+        {/* Separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-mc-border to-transparent my-4 opacity-30" />
+
+        {/* Advanced Tools */}
+        <div className="mb-2 px-2 text-[10px] uppercase tracking-widest text-mc-muted/60 font-medium">Advanced Tools</div>
         <button
           onClick={() => onNavigate('app-manager')}
-          className={`w-full px-3 py-2 rounded-lg text-sm transition-colors titlebar-no-drag ${
+          className={`w-full px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center justify-between titlebar-no-drag group ${
             currentPage === 'app-manager'
-              ? 'bg-mc-surface text-mc-text'
-              : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50'
+              ? 'bg-mc-bg border border-mc-border text-mc-text shadow-sm'
+              : 'text-mc-muted hover:text-mc-text hover:bg-mc-border/50 border border-transparent'
           }`}
         >
-          📦 App Manager
+          <div className="flex items-center gap-3">
+            <Box className={`w-4 h-4 ${currentPage === 'app-manager' ? 'text-mc-text' : 'text-mc-muted group-hover:text-mc-text'} transition-colors`} />
+            <span>App Manager</span>
+          </div>
         </button>
         <button
           onClick={() => onNavigate('space-lens')}
-          className={`w-full px-3 py-2 rounded-lg text-sm transition-colors titlebar-no-drag ${
+          className={`w-full px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center justify-between titlebar-no-drag group ${
             currentPage === 'space-lens'
-              ? 'bg-mc-surface text-mc-text'
-              : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50'
+              ? 'bg-mc-bg border border-mc-border text-mc-text shadow-sm'
+              : 'text-mc-muted hover:text-mc-text hover:bg-mc-border/50 border border-transparent'
           }`}
         >
-          🔍 Space Lens <span className="text-[9px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1 rounded ml-1 uppercase">Pro</span>
+          <div className="flex items-center gap-3">
+            <FolderSearch className={`w-4 h-4 ${currentPage === 'space-lens' ? 'text-mc-text' : 'text-mc-muted group-hover:text-mc-text'} transition-colors`} />
+            <span>Space Lens</span>
+          </div>
+          <span className="text-[8px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1 rounded uppercase tracking-wider">Pro</span>
         </button>
         <button
           onClick={() => onNavigate('malware')}
-          className={`w-full px-3 py-2 rounded-lg text-sm transition-colors titlebar-no-drag ${
+          className={`w-full px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center justify-between titlebar-no-drag group ${
             currentPage === 'malware'
-              ? 'bg-mc-surface text-mc-text'
-              : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50'
+              ? 'bg-mc-bg border border-mc-border text-mc-destructive shadow-sm'
+              : 'text-mc-muted hover:text-mc-text hover:bg-mc-border/50 border border-transparent'
           }`}
         >
-          🛡️ Anti-Malware <span className="text-[9px] font-bold text-mc-destructive border border-mc-destructive/30 bg-mc-destructive/10 px-1 rounded ml-1 uppercase">Pro</span>
+          <div className="flex items-center gap-3">
+            <ShieldAlert className={`w-4 h-4 ${currentPage === 'malware' ? 'text-mc-destructive' : 'text-mc-muted group-hover:text-mc-destructive'} transition-colors`} />
+            <span>Anti-Malware</span>
+          </div>
+          <span className="text-[8px] font-bold text-mc-destructive border border-mc-destructive/30 bg-mc-destructive/10 px-1 rounded uppercase tracking-wider">Pro</span>
         </button>
         <button
           onClick={() => onNavigate('update-manager')}
-          className={`w-full px-3 py-2 rounded-lg text-sm transition-colors titlebar-no-drag ${
+          className={`w-full px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center justify-between titlebar-no-drag group ${
             currentPage === 'update-manager'
-              ? 'bg-mc-surface text-mc-text'
-              : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50'
+              ? 'bg-mc-bg border border-mc-border text-mc-text shadow-sm'
+              : 'text-mc-muted hover:text-mc-text hover:bg-mc-border/50 border border-transparent'
           }`}
         >
-          🔄 App Updater <span className="text-[9px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1 rounded ml-1 uppercase">Pro</span>
+          <div className="flex items-center gap-3">
+            <RefreshCcw className={`w-4 h-4 ${currentPage === 'update-manager' ? 'text-mc-text' : 'text-mc-muted group-hover:text-mc-text'} transition-colors`} />
+            <span>App Updater</span>
+          </div>
         </button>
         <button
           onClick={() => onNavigate('email-cleaner')}
-          className={`w-full px-3 py-2 rounded-lg text-sm transition-colors titlebar-no-drag ${
+          className={`w-full px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center justify-between titlebar-no-drag group ${
             currentPage === 'email-cleaner'
-              ? 'bg-mc-surface text-mc-text'
-              : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50'
+              ? 'bg-mc-bg border border-mc-border text-mc-text shadow-sm'
+              : 'text-mc-muted hover:text-mc-text hover:bg-mc-border/50 border border-transparent'
           }`}
         >
-          📫 Mail Attachments <span className="text-[9px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1 rounded ml-1 uppercase">Pro</span>
+          <div className="flex items-center gap-3">
+            <MailX className={`w-4 h-4 ${currentPage === 'email-cleaner' ? 'text-mc-text' : 'text-mc-muted group-hover:text-mc-text'} transition-colors`} />
+            <span>Mail Cleaner</span>
+          </div>
+          <span className="text-[8px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1 rounded uppercase tracking-wider">Pro</span>
         </button>
-      </div>
 
-      {/* Separator */}
-      <div className="px-4">
-        <div className="border-t border-mc-border" />
-      </div>
+        {/* Separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-mc-border to-transparent my-4 opacity-30" />
 
-      {/* Module list */}
-      <div className="flex-1 overflow-y-auto px-3 py-2">
-        <p className="text-[10px] uppercase tracking-wider text-mc-muted mb-2 px-3">
-          Modules
-        </p>
+        {/* Module list */}
+        <div className="mb-2 px-2 text-[10px] uppercase tracking-widest text-mc-muted/60 font-medium">Modules</div>
         {(Object.keys(MODULE_LABELS) as ModuleId[]).map((id) => {
           const mod = modules[id];
           const sizeLabel =
@@ -127,19 +152,19 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
             <button
               key={id}
               onClick={() => onNavigate(`module:${id}`)}
-              className={`titlebar-no-drag w-full flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors ${
+              className={`titlebar-no-drag w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all duration-300 group ${
                 currentPage === `module:${id}`
-                  ? 'bg-mc-surface text-mc-text'
-                  : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50'
+                  ? 'bg-mc-bg border border-mc-border text-mc-text shadow-sm'
+                  : 'text-mc-muted hover:text-mc-text hover:bg-mc-border/50 border border-transparent'
               }`}
             >
               <ModuleStatusDot status={mod.status} />
               <span className="flex-1 text-left truncate">{MODULE_LABELS[id]}</span>
               {PRO_MODULES.includes(id) && (
-                <span className="text-[9px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1 rounded ml-1 uppercase">Pro</span>
+                <span className="text-[8px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-0.5 rounded uppercase">Pro</span>
               )}
               {sizeLabel && (
-                <span className={`text-xs flex-shrink-0 font-mono ml-2 ${
+                <span className={`text-[10px] flex-shrink-0 font-mono ml-2 ${
                   mod.status === 'done' ? 'text-mc-accent' : 'text-mc-warning'
                 }`}>
                   {sizeLabel}
@@ -149,36 +174,39 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                 <span className="text-xs text-mc-muted ml-2">...</span>
               )}
               {mod.status === 'skipped' && (
-                <span className="text-xs text-mc-muted ml-2">skip</span>
+                <span className="text-[10px] text-mc-muted ml-2 uppercase font-mono tracking-wider">Skip</span>
               )}
             </button>
           );
         })}
       </div>
 
-      {/* Separator */}
-      <div className="px-4">
-        <div className="border-t border-mc-border" />
-      </div>
-
-      {/* Bottom navigation */}
-      <div className="px-3 py-3 space-y-0.5">
-        {[
-          { id: 'history', label: '📋 History' },
-          { id: 'settings', label: '⚙️ Settings' },
-        ].map((item) => (
+      {/* Bottom utilities */}
+      <div className="p-3">
+        <div className="bg-mc-bg/50 border border-mc-border rounded-xl p-1 shadow-inner backdrop-blur-sm">
           <button
-            key={item.id}
-            onClick={() => onNavigate(item.id)}
-            className={`titlebar-no-drag w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
-              currentPage === item.id
-                ? 'bg-mc-surface text-mc-text'
-                : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50'
+            onClick={() => onNavigate('history')}
+            className={`w-full px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center gap-3 titlebar-no-drag group ${
+              currentPage === 'history'
+                ? 'bg-mc-surface text-mc-text shadow-sm border border-mc-border/50'
+                : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50 border border-transparent'
             }`}
           >
-            {item.label}
+            <History className={`w-4 h-4 ${currentPage === 'history' ? 'text-mc-text' : 'text-mc-muted group-hover:text-mc-text'} transition-colors`} />
+            <span>Audit Log</span>
           </button>
-        ))}
+          <button
+            onClick={() => onNavigate('settings')}
+            className={`w-full mt-1 px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center gap-3 titlebar-no-drag group ${
+              currentPage === 'settings'
+                ? 'bg-mc-surface text-mc-text shadow-sm border border-mc-border/50'
+                : 'text-mc-muted hover:text-mc-text hover:bg-mc-surface/50 border border-transparent'
+            }`}
+          >
+            <Settings className={`w-4 h-4 ${currentPage === 'settings' ? 'text-mc-text' : 'text-mc-muted group-hover:text-mc-text'} transition-colors`} />
+            <span>Settings</span>
+          </button>
+        </div>
       </div>
     </aside>
   );

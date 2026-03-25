@@ -1,0 +1,53 @@
+:root {
+  /* Backgrounds — layered from deepest to highest */
+  --bg-base:        #0a0c0b;   /* app background, window fill */
+  --bg-surface:     #111413;   /* sidebar, panels */
+  --bg-elevated:    #181b1a;   /* cards, module panels */
+  --bg-hover:       #1e2220;   /* hover states */
+  --bg-active:      #232624;   /* pressed / selected */
+  --bg-overlay:     rgba(10, 12, 11, 0.85); /* modal backdrop */
+
+  /* Borders */
+  --border-subtle:  rgba(255, 255, 255, 0.05);  /* panel separators */
+  --border-default: rgba(255, 255, 255, 0.08);  /* card edges */
+  --border-strong:  rgba(255, 255, 255, 0.14);  /* focused inputs */
+
+  /* Text */
+  --text-primary:   #e8ede8;   /* headings, values, active labels */
+  --text-secondary: #8a9e8a;   /* descriptions, metadata */
+  --text-muted:     #4a5c4a;   /* placeholder, disabled */
+  --text-inverse:   #0a0c0b;   /* text on light surfaces */
+
+  /* Brand / Accent */
+  --accent:         #3ddc84;   /* primary action, active state */
+  --accent-dim:     #1a4a30;   /* accent background fills */
+  --accent-muted:   #224033;   /* subtle accent tints */
+  --accent-glow:    rgba(61, 220, 132, 0.15); /* glow halos */
+
+  /* Semantic */
+  --warning:        #f0a500;
+  --warning-dim:    #3d2a00;
+  --warning-muted:  #2a1d00;
+
+  --danger:         #e05252;
+  --danger-dim:     #3d1515;
+  --danger-muted:   #2a0e0e;
+
+  --info:           #4a9eff;
+  --info-dim:       #0d2a4d;
+
+  --success:        var(--accent);
+  --success-dim:    var(--accent-dim);
+
+  /* Module status dots */
+  --dot-idle:       #2a3a2a;
+  --dot-scanning:   #f0a500;
+  --dot-found:      #f0a500;
+  --dot-done:       var(--accent);
+  --dot-skipped:    #2a3a2a;
+  --dot-error:      var(--danger);
+
+  --font-display: 'Geist', 'SF Pro Display', system-ui, sans-serif;
+  --font-body:    'Geist', 'SF Pro Text', system-ui, sans-serif;
+  --font-mono:    'Geist Mono', 'JetBrains Mono', 'SF Mono', monospace;
+}

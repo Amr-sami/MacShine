@@ -23,6 +23,26 @@ from modules import uninstaller, malware, updates, email_cleaner
 
 # ── Module dispatch table ────────────────────────────────────
 
+MODULE_MAP = {
+    'caches': caches,
+    'logs': logs,
+    'trash': trash,
+    'xcode': xcode,
+    'browsers': browsers,
+    'large_files': large_files,
+    'duplicates': duplicates,
+    'brew': brew,
+    'startup': startup,
+    'apps': apps,
+    'privacy': privacy,
+    'dns_memory': dns_memory,
+    'uninstaller': uninstaller,
+    'malware': malware,
+    'updates': updates,
+    'emails': email_cleaner,
+}
+
+
 ACTIONS = {
     'scan_caches': lambda opts: caches.scan(opts),
     'delete_caches': lambda paths: caches.delete(paths),

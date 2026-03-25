@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { UndoToast } from '../components/UndoToast';
+import { Loader2, Box, Ghost } from 'lucide-react';
 
 interface AppInfo {
   path: string;
@@ -156,9 +157,9 @@ export function AppManagerPage() {
       {/* App list */}
       <div className="flex-1 overflow-y-auto">
         {loading && (
-          <div className="flex items-center justify-center h-full text-mc-accent">
-            <div className="animate-spin text-2xl mr-3">⏳</div>
-            <span className="text-sm">Scanning...</span>
+          <div className="flex flex-col items-center justify-center h-full text-mc-accent animate-in fade-in duration-300">
+            <Loader2 className="w-8 h-8 animate-spin mb-3 drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]" />
+            <span className="text-sm font-mono tracking-widest uppercase">Scanning...</span>
           </div>
         )}
 
@@ -178,9 +179,8 @@ export function AppManagerPage() {
         {!loading && filter !== 'orphaned' && filteredApps.map((app) => (
           <div key={app.path} className="border-b border-mc-border/50">
             <div className="flex items-center gap-4 px-6 py-3 hover:bg-mc-surface/30 transition-colors">
-              {/* App icon placeholder */}
-              <div className="w-10 h-10 rounded-xl bg-mc-surface flex items-center justify-center text-lg flex-shrink-0">
-                📦
+              <div className="w-10 h-10 rounded-xl bg-mc-surface border border-mc-border flex items-center justify-center text-lg flex-shrink-0 shadow-inner">
+                <Box className="w-5 h-5 text-mc-muted hover:text-mc-text transition-colors" />
               </div>
 
               {/* App info */}
@@ -262,8 +262,8 @@ export function AppManagerPage() {
         {/* Orphans View */}
         {!loading && filter === 'orphaned' && orphans.map((orphan) => (
           <div key={orphan.path} className="border-b border-mc-border/50 flex items-center gap-4 px-6 py-3 hover:bg-mc-surface/30 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-mc-surface flex items-center justify-center text-lg flex-shrink-0 text-mc-accent border border-mc-accent/30 shadow-[0_0_10px_rgba(74,222,128,0.1)]">
-              👻
+            <div className="w-10 h-10 rounded-xl bg-mc-surface flex items-center justify-center shrink-0 text-mc-accent border border-mc-accent/30 shadow-[0_0_15px_rgba(0,229,255,0.1)]">
+              <Ghost className="w-5 h-5" />
             </div>
             
             <div className="flex-1 min-w-0">

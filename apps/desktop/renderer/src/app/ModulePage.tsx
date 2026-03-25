@@ -37,8 +37,8 @@ export function ModulePage({ moduleId }: Props) {
   const [isPro, setIsPro] = useState(true);
 
   useEffect(() => {
-    window.macclean?.getLicenseStatus().then(status => {
-      if (status) setIsPro(status.isPro);
+    window.macclean?.getLicenseStatus().then((status: any) => {
+      setIsPro(status?.isPro || false);
     });
   }, []);
 

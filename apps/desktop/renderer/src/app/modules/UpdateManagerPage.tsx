@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { RefreshCcw, Loader2, Box } from 'lucide-react';
 
 interface UpdateInfo {
   name: string;
@@ -49,9 +50,9 @@ export function UpdateManagerPage() {
       {/* Header */}
       <div className="px-6 py-5 border-b border-mc-border flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-mc-text flex items-center gap-2">
-            <span>🔄</span> Update Manager
-            <span className="text-[10px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1.5 py-0.5 rounded uppercase">Pro</span>
+          <h2 className="text-xl font-light tracking-wide text-mc-text flex items-center gap-3">
+            <RefreshCcw className="w-5 h-5 text-mc-text" /> Update Manager
+            <span className="text-[10px] font-bold text-mc-accent border border-mc-accent/30 bg-mc-accent/10 px-1.5 py-0.5 rounded uppercase ml-2 tracking-widest">Pro</span>
           </h2>
           <p className="text-sm text-mc-muted mt-1">
             {scanned 
@@ -75,8 +76,8 @@ export function UpdateManagerPage() {
       {/* List */}
       <div className="flex-1 overflow-y-auto p-6">
         {loading && !scanned && (
-          <div className="flex flex-col items-center justify-center h-full text-mc-muted">
-            <div className="animate-spin text-3xl mb-4 text-mc-accent">⏳</div>
+          <div className="flex flex-col items-center justify-center h-full text-mc-muted animate-in fade-in">
+            <Loader2 className="w-10 h-10 animate-spin text-mc-accent mb-4 drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]" />
             <span className="text-sm">Fetching appcast feeds...</span>
           </div>
         )}
@@ -102,10 +103,10 @@ export function UpdateManagerPage() {
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-4 flex-1 min-w-0">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-lg shrink-0 border ${
-                       app.updateAvailable ? 'bg-mc-bg border-mc-accent/40' : 'bg-mc-surface border-mc-border'
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border shadow-inner ${
+                       app.updateAvailable ? 'bg-mc-bg border-mc-accent/40 text-mc-accent' : 'bg-mc-surface border-mc-border text-mc-muted'
                     }`}>
-                      {app.isAppStore ? '' : '📦'}
+                      {app.isAppStore ? <span className="text-xl"></span> : <Box className="w-5 h-5" />}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
