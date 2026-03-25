@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: 'macclean - Privacy-first Mac Cleaner',
+  title: 'MacShine - Privacy-first Mac Cleaner',
   description: 'Reclaim disk space without giving up your privacy.',
 };
 
@@ -22,7 +22,7 @@ export default function RootLayout({
         <header className="border-b border-mc-border/50 sticky top-0 z-50 bg-mc-bg/80 backdrop-blur-md">
           <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <Link href="/" className="font-mono text-mc-accent font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
-              &gt; macclean
+              &gt; MacShine
             </Link>
             <nav className="flex items-center gap-6 text-sm">
               <Link href="/pricing" className="text-mc-muted hover:text-mc-text transition-colors">Pricing</Link>
@@ -42,7 +42,7 @@ export default function RootLayout({
 
         <footer className="border-t border-mc-border/50 py-12 mt-24">
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-mc-muted">
-            <div className="font-mono text-mc-accent">&gt; macclean {new Date().getFullYear()}</div>
+            <div className="font-mono text-mc-accent">&gt; MacShine {new Date().getFullYear()}</div>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-mc-text">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-mc-text">Terms of Service</Link>

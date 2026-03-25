@@ -47,7 +47,7 @@ export default function Home() {
           className="flex flex-col sm:flex-row gap-4 w-full justify-center"
         >
           <a
-            href="/download/macclean-latest.dmg"
+            href="/download/MacShine-latest.dmg"
             className="flex items-center justify-center gap-2 px-8 py-4 bg-mc-accent text-mc-bg rounded-lg font-bold hover:bg-mc-accent/90 transition-all hover:scale-105 active:scale-95"
           >
             Download for macOS
@@ -69,7 +69,7 @@ export default function Home() {
           <FeatureCard 
             icon={<Shield className="text-mc-accent" />}
             title="Privacy First, Offline Always"
-            description="Your file paths, names, and directories never leave your Mac. macclean is built to run 100% offline, keeping your sensitive data exactly where it belongs."
+            description="Your file paths, names, and directories never leave your Mac. MacShine is built to run 100% offline, keeping your sensitive data exactly where it belongs."
           />
           <FeatureCard 
             icon={<CheckCircle2 className="text-mc-accent" />}

@@ -28,7 +28,7 @@ export default function PricingPage() {
             Perfect for basic manual cleanup and unused app detection.
           </p>
           <a
-            href="/download/macclean-latest.dmg"
+            href="/download/MacShine-latest.dmg"
             className="w-full py-3 rounded-lg bg-mc-bg border border-mc-border text-center font-medium hover:bg-mc-border transition-colors mb-8"
           >
             Download Free
@@ -65,7 +65,7 @@ export default function PricingPage() {
             href="/signup"
             className="w-full py-3 rounded-lg bg-mc-accent text-mc-bg text-center font-bold hover:bg-mc-accent/90 transition-transform active:scale-95 mb-8 shadow-[0_0_20px_rgba(74,222,128,0.2)]"
           >
-            Get macclean Pro
+            Get MacShine Pro
           </Link>
 
           <div className="flex flex-col gap-4 text-sm">
