@@ -38,3 +38,6 @@ release/
 
 # TypeScript
 *.tsbuildinfo
+
+# Ignore desktop app on main branch
+apps/desktop/
