@@ -96,6 +96,7 @@ function initPythonBridge(): void {
   pythonBridge = new PythonBridge(pythonScriptPath, isDev);
 
   pythonBridge.on('progress', (data) => {
+    console.log('[PythonBridge] Progress event:', JSON.stringify(data).slice(0, 200));
     getMainWindow()?.webContents.send('scan-progress', data);
   });
 

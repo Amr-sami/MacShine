@@ -22,13 +22,14 @@ WARNING = (
 )
 
 
-def scan(options: dict = None) -> dict:
+def scan(options: dict = None, progress_cb=None) -> dict:
     """Scan Xcode directories. Returns empty if Xcode not installed."""
     if not os.path.isdir(XCODE_APP):
         return {'total': 0, 'paths': [], 'available': False}
 
     found_paths = []
     total = 0
+    checked = 0
 
     for label, xcode_dir in XCODE_PATHS.items():
         if not os.path.isdir(xcode_dir):
@@ -36,6 +37,11 @@ def scan(options: dict = None) -> dict:
 
         try:
             for entry in os.scandir(xcode_dir):
+                checked += 1
+
+                if progress_cb:
+                    progress_cb(entry.path, 0, checked)
+
                 try:
                     size = get_dir_size(entry.path) if entry.is_dir() else entry.stat().st_size
                     if size > 0:

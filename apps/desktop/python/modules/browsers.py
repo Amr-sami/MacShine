@@ -54,11 +54,12 @@ BROWSERS = {
 WARNING = 'Close all browsers before cleaning.'
 
 
-def scan(options: dict = None) -> dict:
+def scan(options: dict = None, progress_cb=None) -> dict:
     """Scan installed browser caches."""
     found_paths = []
     total = 0
     installed_browsers = []
+    checked = 0
 
     for name, info in BROWSERS.items():
         if not os.path.isdir(info['app']):
@@ -67,6 +68,11 @@ def scan(options: dict = None) -> dict:
         installed_browsers.append(name)
 
         for cache_dir in info['caches']:
+            checked += 1
+
+            if progress_cb:
+                progress_cb(cache_dir, 0, checked)
+
             if not os.path.isdir(cache_dir):
                 continue
             if not is_safe_to_scan(cache_dir):

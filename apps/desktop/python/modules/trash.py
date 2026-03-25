@@ -11,16 +11,22 @@ from utils.sizes import get_dir_size, get_file_size
 TRASH_DIR = os.path.expanduser('~/.Trash')
 
 
-def scan(options: dict = None) -> dict:
+def scan(options: dict = None, progress_cb=None) -> dict:
     """Scan Trash and return contents with sizes."""
     found_paths = []
     total = 0
+    checked = 0
 
     if not os.path.isdir(TRASH_DIR):
         return {'total': 0, 'paths': [], 'itemCount': 0, 'warning': 'permanent'}
 
     try:
         for entry in os.scandir(TRASH_DIR):
+            checked += 1
+
+            if progress_cb:
+                progress_cb(entry.path, 0, checked)
+
             try:
                 if entry.is_dir(follow_symlinks=False):
                     size = get_dir_size(entry.path)

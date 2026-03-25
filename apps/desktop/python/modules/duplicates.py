@@ -30,10 +30,11 @@ def _md5_file(path: str, chunk_size: int = 8192) -> str:
     return h.hexdigest()
 
 
-def scan(options: dict = None) -> dict:
+def scan(options: dict = None, progress_cb=None) -> dict:
     """Find duplicate files by MD5 hash."""
     # Group files by size first (quick filter)
     size_groups: dict[int, list[str]] = defaultdict(list)
+    checked = 0
 
     for scan_dir in SCAN_DIRS:
         if not os.path.isdir(scan_dir):
@@ -45,6 +46,11 @@ def scan(options: dict = None) -> dict:
                     continue
                 for f in files:
                     fp = os.path.join(root, f)
+                    checked += 1
+
+                    if progress_cb and checked % 20 == 0:
+                        progress_cb(fp, 0, checked)
+
                     if not is_safe_to_scan(fp):
                         continue
                     try:

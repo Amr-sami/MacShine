@@ -19,11 +19,12 @@ LOG_DIRS = [
 TWENTY_FOUR_HOURS = 24 * 60 * 60
 
 
-def scan(options: dict = None) -> dict:
+def scan(options: dict = None, progress_cb=None) -> dict:
     """Scan log directories, skip files modified < 24h ago."""
     found_paths = []
     total = 0
     now = time.time()
+    checked = 0
 
     for log_dir in LOG_DIRS:
         if not os.path.isdir(log_dir):
@@ -37,6 +38,11 @@ def scan(options: dict = None) -> dict:
 
                 for f in files:
                     fp = os.path.join(root, f)
+                    checked += 1
+
+                    if progress_cb and checked % 5 == 0:
+                        progress_cb(fp, 0, checked)
+
                     if not is_safe_to_scan(fp):
                         continue
                     try:

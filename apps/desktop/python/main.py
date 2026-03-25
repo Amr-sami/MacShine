@@ -132,9 +132,31 @@ def handle_request(request: dict) -> None:
             return
 
         if action == 'scan':
-            result = module.scan(options)
+            import inspect
+
+            # Build a progress callback that emits JSON events to stdout
+            def progress_cb(path, size, total_checked):
+                send_response({
+                    'id': req_id,
+                    'type': 'progress',
+                    'module': module_name,
+                    'data': {
+                        'path': path,
+                        'size': size,
+                        'totalChecked': total_checked,
+                    }
+                })
+
+            # Pass the callback only if the module's scan() accepts it
+            sig = inspect.signature(module.scan)
+            if 'progress_cb' in sig.parameters:
+                result = module.scan(options, progress_cb=progress_cb)
+            else:
+                result = module.scan(options)
+
             send_response({
                 'id': req_id,
+                'action': 'scan',
                 'type': 'result',
                 'data': result
             })

@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import './tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import './tokens.css';
-@import 'geist/dist/geist.css';
-@import 'geist/dist/geist-mono.css';
 
 * {
   margin: 0;

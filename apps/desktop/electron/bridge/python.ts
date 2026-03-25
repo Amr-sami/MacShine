@@ -10,7 +10,7 @@ interface PendingRequest {
 
 const MAX_RETRIES = 3;
 const RETRY_DELAYS = [1000, 3000, 10000]; // Exponential backoff
-const REQUEST_TIMEOUT = 30000; // 30 seconds
+const REQUEST_TIMEOUT = 300000; // 5 minutes — scans run sequentially in Python
 
 /**
  * PythonBridge — spawns a Python subprocess and communicates
@@ -169,7 +169,8 @@ export class PythonBridge extends EventEmitter {
     }
 
     if (type === 'progress') {
-      this.emit('progress', { id, ...(response.data as object) });
+      // Forward the COMPLETE response so renderer gets type, module, and data
+      this.emit('progress', response);
       return;
     }
 

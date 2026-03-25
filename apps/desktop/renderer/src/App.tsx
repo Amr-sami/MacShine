@@ -33,7 +33,7 @@ function ModuleWrapper({ moduleId }: { moduleId: string }) {
       freedBytes={state.freedBytes}
       currentPath={state.currentPath}
       pathsChecked={state.pathsChecked}
-      errorMessage={state.error}
+      errorMessage={state.error ?? undefined}
       isPermanent={moduleId === 'trash' || moduleId === 'large_files'}
       onScan={scan}
       onDelete={confirmDelete}

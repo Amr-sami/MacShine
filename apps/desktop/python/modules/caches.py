@@ -16,10 +16,11 @@ CACHE_DIRS = [
 ]
 
 
-def scan(options: dict = None) -> dict:
+def scan(options: dict = None, progress_cb=None) -> dict:
     """Scan cache directories and return found paths + total size."""
     found_paths = []
     total = 0
+    checked = 0
 
     for cache_dir in CACHE_DIRS:
         if not os.path.isdir(cache_dir):
@@ -28,6 +29,11 @@ def scan(options: dict = None) -> dict:
         try:
             for entry in os.scandir(cache_dir):
                 path = entry.path
+                checked += 1
+
+                if progress_cb:
+                    progress_cb(path, 0, checked)
+
                 if not is_safe_to_scan(path):
                     continue
 

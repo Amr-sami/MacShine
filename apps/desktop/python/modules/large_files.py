@@ -19,7 +19,7 @@ SCAN_DIRS = [
 ]
 
 
-def scan(options: dict = None) -> dict:
+def scan(options: dict = None, progress_cb=None) -> dict:
     """Find files above the size threshold."""
     options = options or {}
     threshold_mb = options.get('thresholdMB', DEFAULT_THRESHOLD_MB)
@@ -27,6 +27,7 @@ def scan(options: dict = None) -> dict:
 
     found_paths = []
     total = 0
+    checked = 0
 
     for scan_dir in SCAN_DIRS:
         if not os.path.isdir(scan_dir):
@@ -40,6 +41,11 @@ def scan(options: dict = None) -> dict:
 
                 for f in files:
                     fp = os.path.join(root, f)
+                    checked += 1
+
+                    if progress_cb and checked % 10 == 0:
+                        progress_cb(fp, 0, checked)
+
                     if not is_safe_to_scan(fp):
                         continue
                     try:

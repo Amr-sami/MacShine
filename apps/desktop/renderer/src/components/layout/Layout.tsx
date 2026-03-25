@@ -2,7 +2,15 @@ import React from 'react';
 import { Titlebar } from './Titlebar';
 import { Sidebar } from './Sidebar';
 
-export function Layout({ children, activeModule, onModuleSelect }: { children: React.ReactNode; activeModule: string; onModuleSelect: (id: string) => void; }) {
+export function Layout({ 
+  children, 
+  activeModule, 
+  onModuleSelect 
+}: { 
+  children: React.ReactNode;
+  activeModule: string | null;
+  onModuleSelect: (id: string | null) => void;
+}) {
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-[--bg-base]">
       <Titlebar />
