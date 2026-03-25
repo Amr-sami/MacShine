@@ -21,8 +21,8 @@ export default function RootLayout({
       <body className={`${inter.variable} ${mono.variable} antialiased bg-mc-bg text-mc-text min-h-screen flex flex-col font-sans selection:bg-mc-accent/30 selection:text-mc-accent`}>
         <header className="border-b border-mc-border/50 sticky top-0 z-50 bg-mc-bg/80 backdrop-blur-md">
           <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <img src="/logo.svg" alt="MacShine" width={110} height={30} className="mt-1" />
+            <Link href="/" className="font-mono text-mc-accent font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
+              &gt; MacShine
             </Link>
             <nav className="flex items-center gap-6 text-sm">
               <Link href="/pricing" className="text-mc-muted hover:text-mc-text transition-colors">Pricing</Link>

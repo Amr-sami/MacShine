@@ -1,6 +1,6 @@
-appId: io.macclean.app
-productName: macclean
-copyright: Copyright © 2025 macclean
+appId: io.macshine.app
+productName: MacShine
+copyright: Copyright © 2026 MacShine
 
 directories:
   output: release
@@ -13,7 +13,7 @@ mac:
       arch:
         - x64
         - arm64
-  icon: build/icon.icns
+  icon: build/icon.png
   darkModeSupport: true
   hardenedRuntime: true
   gatekeeperAssess: false
