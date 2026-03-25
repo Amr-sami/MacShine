@@ -41,7 +41,8 @@ const initialModuleState: ModuleState = {
 
 const ALL_MODULES = [
   'caches', 'logs', 'trash', 'xcode', 'browsers', 
-  'large_files', 'duplicates', 'brew', 'startup', 'dns_memory'
+  'large_files', 'duplicates', 'brew', 'startup', 'dns_memory',
+  'app-manager', 'space-lens', 'privacy'
 ];
 
 const initialModules = ALL_MODULES.reduce((acc, m) => {

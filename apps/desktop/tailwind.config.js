@@ -8,14 +8,14 @@ export default {
     extend: {
       colors: {
         mc: {
-          'mc-bg': 'var(--mc-bg)',
-          'mc-surface': 'var(--mc-surface)',
-          'mc-border': 'var(--mc-border)',
-          'mc-text': 'var(--mc-text)',
-          'mc-muted': 'var(--mc-muted)',
-          'mc-accent': 'var(--mc-accent)',
-          'mc-warning': 'var(--mc-warning)',
-          'mc-destructive': 'var(--mc-destructive)',
+          bg: 'var(--mc-bg)',
+          surface: 'var(--mc-surface)',
+          border: 'var(--mc-border)',
+          text: 'var(--mc-text)',
+          muted: 'var(--mc-muted)',
+          accent: 'var(--mc-accent)',
+          warning: 'var(--mc-warning)',
+          destructive: 'var(--mc-destructive)',
         },
       },
       fontFamily: {

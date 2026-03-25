@@ -4,6 +4,10 @@ import { HomeScreen } from './app/HomeScreen';
 import { Onboarding } from './app/Onboarding';
 import { ModulePanel } from './components/modules/ModulePanel';
 import { useModuleScan } from './hooks/useModuleScan';
+import { AppManagerPage } from './app/AppManagerPage';
+import { SpaceLensPage } from './app/SpaceLensPage';
+import { SettingsPage } from './app/SettingsPage';
+import { HistoryPage } from './app/HistoryPage';
 
 const MODULE_INFO = {
   caches: { title: 'System Caches', desc: 'Temporary files created by macOS and apps. Safe to delete.' },
@@ -65,6 +69,14 @@ export default function App() {
       <Layout activeModule={activeModule || ''} onModuleSelect={setActiveModule}>
         {activeModule === null || activeModule === '' ? (
           <HomeScreen onModuleSelect={setActiveModule} />
+        ) : activeModule === 'app-manager' ? (
+          <AppManagerPage />
+        ) : activeModule === 'space-lens' ? (
+          <SpaceLensPage />
+        ) : activeModule === 'settings' ? (
+          <SettingsPage />
+        ) : activeModule === 'history' ? (
+          <HistoryPage />
         ) : (
           <ModuleWrapper key={activeModule} moduleId={activeModule} />
         )}

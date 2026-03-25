@@ -8,7 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Building macclean Python backend..."
 
-pyinstaller \
+python3 -m PyInstaller \
   --onefile \
   --distpath "${SCRIPT_DIR}/dist" \
   --workpath "${SCRIPT_DIR}/build" \

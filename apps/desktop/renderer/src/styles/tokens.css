@@ -46,8 +46,19 @@
   --dot-done:       var(--accent);
   --dot-skipped:    #2a3a2a;
   --dot-error:      var(--danger);
+  
+  /* Legacy mc- aliases for existing tool components */
+  --mc-bg:          var(--bg-base);
+  --mc-surface:     var(--bg-surface);
+  --mc-border:      var(--border-default);
+  --mc-text:        var(--text-primary);
+  --mc-muted:       var(--text-secondary);
+  --mc-accent:      var(--accent);
+  --mc-warning:     var(--warning);
+  --mc-destructive: var(--danger);
+  --mc-bg-alt:      var(--bg-elevated);
 
-  --font-display: 'Geist', 'SF Pro Display', system-ui, sans-serif;
+  --font-display: 'Outfit', 'SF Pro Display', system-ui, sans-serif;
   --font-body:    'Geist', 'SF Pro Text', system-ui, sans-serif;
   --font-mono:    'Geist Mono', 'JetBrains Mono', 'SF Mono', monospace;
 }
