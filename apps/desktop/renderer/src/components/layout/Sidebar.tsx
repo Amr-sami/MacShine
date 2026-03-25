@@ -44,10 +44,7 @@ export function Sidebar({ activeModule, onModuleSelect }: { activeModule: string
     >
       {/* Logo area */}
       <div className="px-5 pt-5 pb-4">
-        {/* Placeholder for SVG wordmark */}
-        <div className="text-[16px] font-bold text-[--text-primary] tracking-tight">
-          Mac<span className="text-[--accent]">Shine</span>
-        </div>
+        <img src="/logo.svg" alt="MacShine" width={110} height={30} className="hover:opacity-80 transition-opacity" />
       </div>
 
       {/* Quick action */}

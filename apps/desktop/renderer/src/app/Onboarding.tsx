@@ -43,8 +43,8 @@ export function Onboarding({ onComplete }: { onComplete: () => void }) {
           >
             {step === 1 && (
               <>
-                <div className="text-[32px] font-bold text-[--text-primary] tracking-tight mb-8">
-                  Mac<span className="text-[--accent]">Shine</span>
+                <div className="mb-8">
+                  <img src="/logo.svg" alt="MacShine" width={140} height={38} className="mx-auto" />
                 </div>
                 <h1 className="text-3xl font-semibold mb-3">Your Mac. Cleaner.</h1>
                 <p className="text-[14px] leading-loose text-[--text-secondary] mb-8">
