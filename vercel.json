@@ -1,5 +1,0 @@
-{
-  "buildCommand": "pnpm --filter macshine-web build",
-  "outputDirectory": "apps/web/.next",
-  "framework": "nextjs"
-}
